@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>On Assessment — Dr Michelle Ocriciano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --c0-bg:#FFE8E8;--c0-acc:#A82828;--c0-tab:#FFB8B8;
+  --c1-bg:#FFF0E0;--c1-acc:#9A5008;--c1-tab:#FFD4A8;
+  --c2-bg:#FFFAE0;--c2-acc:#7A5800;--c2-tab:#FFF0A8;
+  --c3-bg:#E4F8EC;--c3-acc:#266038;--c3-tab:#B8EEC8;
+  --c4-bg:#E0EEFC;--c4-acc:#164488;--c4-tab:#AACEF0;
+  --c5-bg:#EDE4FF;--c5-acc:#3A1898;--c5-tab:#CDB8FF;
+  --c6-bg:#FFE4F4;--c6-acc:#901858;--c6-tab:#FFAED8;
+  --c7-bg:#E0F8F4;--c7-acc:#0E7060;--c7-tab:#A8EAE0;
+
+  --page-bg:#FEFCF8;
+  --text:#1C1710;
+  --text-dim:#42352A;
+  --font-body:'Cormorant Garamond',Georgia,serif;
+  --font-mono:'DM Mono',monospace;
+  --font-dysl:'Atkinson Hyperlegible',sans-serif;
+  --size-base:18px;
+  --lh:1.82;
+  --fw:400;
+}
+
+/* ── DYSLEXIA MODE ── */
+body.dyslexia {
+  --font-body: var(--font-dysl);
+  --size-base: 18px;
+  --lh: 2.0;
+  --fw: 400;
+}
+body.dyslexia em { font-style: normal; font-weight: 700; }
+body.dyslexia h2 { font-style: normal !important; font-weight: 700 !important; }
+body.dyslexia .sign-off { font-style: normal; }
+body.dyslexia .aside { font-style: normal; }
+body.dyslexia .pull { font-style: normal; font-weight: 700; }
+body.dyslexia .section-card.tbd p { font-style: normal; }
+body.dyslexia p, body.dyslexia li { max-width: 66ch; letter-spacing: 0.03em; }
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+body {
+  background:var(--page-bg);
+  color:var(--text);
+  font-family:var(--font-body);
+  font-size:var(--size-base);
+  font-weight:var(--fw);
+  line-height:var(--lh);
+  min-height:100vh;
+  display:flex;flex-direction:column;
+  transition:font-size 0.2s, font-family 0.2s;
+  overflow:hidden;
+}
+
+.skip{position:absolute;top:-999px;left:1rem;background:var(--text);color:var(--page-bg);padding:0.4rem 0.8rem;font-family:var(--font-mono);font-size:0.65rem;z-index:999;border-radius:2px;}
+.skip:focus{top:0.5rem;}
+
+.shell{
+  display:flex;flex-direction:column;height:100vh;
+  max-width:800px;margin:0 auto;width:100%;
+  padding:0 clamp(1rem,4vw,2.5rem);
+}
+
+/* ── HEADER ── */
+.site-header{padding:0.9rem 0 0.4rem;flex-shrink:0;text-align:center;}
+.eyebrow{
+  font-family:var(--font-mono);font-size:0.58rem;
+  letter-spacing:0.2em;color:var(--text-dim);
+  text-transform:uppercase;margin-bottom:0.25rem;
+}
+h1{
+  font-size:clamp(1.35rem,3.2vw,2rem);
+  font-weight:400;font-style:italic;
+  line-height:1.15;color:var(--text);
+  letter-spacing:-0.01em;margin-bottom:0.15rem;
+}
+body.dyslexia h1{font-style:normal;font-weight:700;}
+.byline{
+  font-family:var(--font-mono);font-size:0.6rem;
+  letter-spacing:0.14em;color:var(--text-dim);
+  text-transform:uppercase;margin-bottom:0.4rem;
+}
+
+/* ── DISCLAIMER ── */
+.disclaimer{text-align:left;
+  margin:0.5rem 0 0;
+  padding:0.55rem 0.9rem;
+  background:rgba(0,0,0,0.05);
+  border-left:3px solid rgba(0,0,0,0.2);
+  border-radius:0 4px 4px 0;
+  font-family:var(--font-mono);
+  font-size:0.595rem;
+  letter-spacing:0.06em;
+  line-height:1.65;
+  color:var(--text);
+  font-weight:400;
+}
+
+/* ── TAB BAR (shared) ── */
+.tab-bar{
+  flex-shrink:0;display:flex;gap:0.35rem;
+  overflow-x:auto;padding:0.45rem 0 0.35rem;
+  scrollbar-width:none;
+}
+.tab-bar::-webkit-scrollbar{display:none;}
+.tab-bar.bottom-bar{padding:0.35rem 0 0.45rem;}
+
+.tab-btn{
+  flex-shrink:0;font-family:var(--font-mono);
+  font-size:0.57rem;letter-spacing:0.11em;
+  text-transform:uppercase;border:none;border-radius:100px;
+  padding:0.3rem 0.78rem;cursor:pointer;
+  transition:transform 0.15s,box-shadow 0.15s,opacity 0.15s,background 0.15s;
+  opacity:0.45;background:#cec8be;color:var(--text);white-space:nowrap;
+  font-weight:400;
+}
+.tab-btn:hover{opacity:0.72;transform:translateY(-1px);}
+.tab-btn:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:100px;}
+.tab-btn.active{opacity:1;transform:translateY(-2px);box-shadow:0 3px 10px rgba(0,0,0,0.13);}
+
+.tab-btn[data-i="0"].active{background:var(--c0-tab);color:#6a0000;}
+.tab-btn[data-i="1"].active{background:var(--c1-tab);color:#5a2800;}
+.tab-btn[data-i="2"].active{background:var(--c2-tab);color:#4a3000;}
+.tab-btn[data-i="3"].active{background:var(--c3-tab);color:#0a3820;}
+.tab-btn[data-i="4"].active{background:var(--c4-tab);color:#082050;}
+.tab-btn[data-i="5"].active{background:var(--c5-tab);color:#200060;}
+.tab-btn[data-i="6"].active{background:var(--c6-tab);color:#580030;}
+.tab-btn[data-i="7"].active{background:linear-gradient(90deg,#d8c0f0,#f0c0d8);color:#3a0860;}
+
+.top-btn{
+  flex-shrink:0;font-family:var(--font-mono);font-size:0.57rem;
+  letter-spacing:0.1em;text-transform:uppercase;
+  border:1.5px solid rgba(0,0,0,0.22);border-radius:100px;
+  padding:0.3rem 0.82rem;cursor:pointer;
+  background:transparent;color:var(--text-dim);
+  white-space:nowrap;transition:all 0.15s;font-weight:400;
+}
+.top-btn:hover{background:rgba(0,0,0,0.07);color:var(--text);}
+.top-btn:focus-visible{outline:2px solid var(--text);outline-offset:2px;}
+
+.bar-divider{height:1px;background:rgba(0,0,0,0.09);flex-shrink:0;}
+
+/* ── CONTENT AREA ── */
+.content-area{flex:1;overflow:hidden;position:relative;border-radius:10px;}
+
+.section-card{
+  display:none;height:100%;overflow-y:auto;
+  padding:1.5rem 2rem 1rem;
+  border-radius:10px;
+  border:1px solid rgba(0,0,0,0.08);
+  scrollbar-width:thin;
+  scrollbar-color:rgba(0,0,0,0.14) transparent;
+  animation:slideIn 0.25s ease both;
+}
+.section-card::-webkit-scrollbar{width:4px;}
+.section-card::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.15);border-radius:4px;}
+.section-card.active{display:block;}
+
+.section-card[data-i="0"]{background:var(--c0-bg);--acc:var(--c0-acc);}
+.section-card[data-i="1"]{background:var(--c1-bg);--acc:var(--c1-acc);}
+.section-card[data-i="2"]{background:var(--c2-bg);--acc:var(--c2-acc);}
+.section-card[data-i="3"]{background:var(--c3-bg);--acc:var(--c3-acc);}
+.section-card[data-i="4"]{background:var(--c4-bg);--acc:var(--c4-acc);}
+.section-card[data-i="5"]{background:var(--c5-bg);--acc:var(--c5-acc);}
+.section-card[data-i="6"]{background:var(--c6-bg);--acc:var(--c6-acc);}
+.section-card[data-i="7"]{background:linear-gradient(135deg,#ede0f8 0%,#f8e0ee 60%,#e8eaf8 100%);--acc:#5a2878;}
+
+.section-label{
+  font-family:var(--font-mono);font-size:0.57rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--acc);display:flex;align-items:center;gap:0.7rem;
+  margin-bottom:0.6rem;font-weight:400;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--acc);opacity:0.25;}
+
+h2{
+  font-size:clamp(1.1rem,2.5vw,1.4rem);
+  font-weight:600;font-style:italic;
+  color:var(--text);margin-bottom:0.8rem;line-height:1.3;
+}
+
+p{margin-bottom:0.78rem;font-weight:var(--fw);}
+p:last-child{margin-bottom:0;}
+strong{font-weight:600;}
+
+/* ── LISTS ── */
+ul.bullets,ol.steps{list-style:none;padding:0;margin:0.8rem 0;}
+ul.bullets li{
+  position:relative;padding:0.38rem 0 0.38rem 1.5rem;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  line-height:1.6;font-size:0.95em;font-weight:var(--fw);
+}
+ul.bullets li:last-child{border-bottom:none;}
+ul.bullets li::before{content:'—';position:absolute;left:0;color:var(--acc);font-weight:600;}
+
+ol.steps{counter-reset:steps;}
+ol.steps li{
+  position:relative;padding:0.38rem 0 0.38rem 2rem;
+  border-bottom:1px solid rgba(0,0,0,0.08);
+  line-height:1.6;font-size:0.95em;
+  counter-increment:steps;font-weight:var(--fw);
+}
+ol.steps li:last-child{border-bottom:none;}
+ol.steps li::before{
+  content:counter(steps);position:absolute;left:0;top:0.5rem;
+  color:var(--acc);font-family:var(--font-mono);font-size:0.66rem;
+  letter-spacing:0.1em;font-weight:400;
+}
+
+/* ── ASIDE ── */
+.aside{
+  font-size:0.9em;color:var(--text);font-style:italic;
+  border-left:3px solid var(--acc);padding:0.55rem 1rem;
+  margin:0.9rem 0;line-height:1.78;font-weight:500;
+  background:rgba(0,0,0,0.05);border-radius:0 4px 4px 0;
+}
+
+/* ── PULL ── */
+.pull{
+  font-size:clamp(0.98rem,2vw,1.16rem);font-style:italic;
+  color:var(--acc);border-top:1px solid rgba(0,0,0,0.12);
+  border-bottom:1px solid rgba(0,0,0,0.12);
+  padding:0.75rem 0;margin:1rem 0;line-height:1.5;font-weight:600;
+}
+
+/* ── CLOSING CARD ── */
+.closing-card{padding-top:0.6rem;}
+.permission-block{
+  border-left:3px solid var(--acc);
+  padding:0.9rem 1.2rem;margin-bottom:1.4rem;
+  background:rgba(0,0,0,0.07);
+  border-radius:0 6px 6px 0;
+}
+.permission-block p{font-size:1.02em;font-weight:600;}
+.sign-off{
+  font-style:italic;color:var(--text);
+  line-height:1.75;font-size:1em;font-weight:600;
+}
+.sign-block{
+  margin-top:1.1rem;
+  padding-top:0.75rem;
+  border-top:1px solid rgba(0,0,0,0.14);
+  display:block;
+}
+.sign-name{
+  font-size:0.9em;color:var(--text-dim);
+  font-weight:400;font-style:italic;
+}
+.sign-role{
+  font-family:var(--font-mono);font-size:0.51rem;
+  letter-spacing:0.14em;text-transform:uppercase;
+  color:var(--text-dim);margin-top:0.15rem;
+  font-weight:400;opacity:0.55;
+}
+.haruaru{
+  font-family:var(--font-mono);font-size:0.56rem;
+  letter-spacing:0.15em;color:var(--text-dim);
+  margin-top:0.18rem;font-weight:400;opacity:0.45;
+}
+
+/* ── BOTTOM NAV ── */
+.bottom-nav{
+  flex-shrink:0;display:flex;align-items:center;
+  justify-content:space-between;padding:0.35rem 0 0.25rem;gap:0.5rem;
+}
+.nav-btn{
+  font-family:var(--font-mono);font-size:0.58rem;
+  letter-spacing:0.12em;text-transform:uppercase;
+  border:1.5px solid rgba(0,0,0,0.16);background:transparent;
+  color:var(--text-dim);padding:0.4rem 0.9rem;
+  border-radius:100px;cursor:pointer;transition:all 0.14s;
+  display:flex;align-items:center;gap:0.35rem;font-weight:400;
+}
+.nav-btn:hover:not(:disabled){background:rgba(0,0,0,0.06);color:var(--text);border-color:rgba(0,0,0,0.28);}
+.nav-btn:disabled{opacity:0.2;cursor:default;}
+.nav-btn:focus-visible{outline:2px solid var(--text);outline-offset:2px;}
+.nav-counter{
+  font-family:var(--font-mono);font-size:0.57rem;
+  letter-spacing:0.15em;color:var(--text-dim);
+  text-transform:uppercase;font-weight:400;
+}
+
+/* ── A11Y ── */
+#a11y-toggle{position:fixed;bottom:1.4rem;right:1.1rem;z-index:200;}
+#a11y-btn{
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(255,255,255,0.94);
+  border:1.5px solid rgba(0,0,0,0.14);
+  color:var(--text-dim);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;box-shadow:0 2px 10px rgba(0,0,0,0.1);
+  backdrop-filter:blur(8px);transition:all 0.15s;
+}
+#a11y-btn:hover,#a11y-btn:focus{border-color:var(--text);color:var(--text);outline:none;}
+#a11y-panel{
+  position:absolute;bottom:50px;right:0;width:228px;
+  background:rgba(255,255,255,0.97);
+  border:1px solid rgba(0,0,0,0.1);
+  border-radius:10px;padding:1.05rem;
+  box-shadow:0 6px 28px rgba(0,0,0,0.1);
+  display:none;backdrop-filter:blur(12px);
+}
+#a11y-panel.open{display:block;animation:panelIn 0.18s ease;}
+@keyframes panelIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+.a11y-sec{margin-bottom:0.85rem;}
+.a11y-sec:last-child{margin-bottom:0;}
+.a11y-lbl{
+  font-family:var(--font-mono);font-size:0.54rem;
+  letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--text-dim);display:block;margin-bottom:0.42rem;font-weight:400;
+}
+.a11y-row{display:flex;gap:0.32rem;}
+.a11y-row button{
+  flex:1;background:transparent;
+  border:1.5px solid rgba(0,0,0,0.14);color:var(--text-dim);
+  font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.07em;
+  padding:0.3rem 0.4rem;cursor:pointer;border-radius:4px;
+  transition:all 0.12s;white-space:nowrap;font-weight:400;
+}
+.a11y-row button:hover{border-color:var(--text);color:var(--text);}
+.a11y-row button.active{background:var(--text);color:var(--page-bg);border-color:var(--text);}
+.a11y-row button:focus-visible{outline:2px solid var(--text);outline-offset:1px;}
+
+/* Dyslexia tip inside panel */
+.dysl-note{
+  font-size:0.56rem;line-height:1.5;color:var(--text-dim);
+  margin-top:0.45rem;font-family:var(--font-mono);letter-spacing:0.04em;
+}
+
+
+/* scroll fade hint */
+.content-area::after{
+  content:'';
+  position:absolute;bottom:0;left:0;right:0;height:2.5rem;
+  background:linear-gradient(to bottom, transparent, rgba(254,252,248,0.6));
+  pointer-events:none;border-radius:0 0 10px 10px;
+  z-index:2;
+}
+
+
+
+
+
+/* ── SIGN-OFF BLOCK ── */
+.sign-block {
+  margin-top:1.4rem;
+  padding-top:0.8rem;
+  border-top:1px solid rgba(90,40,120,0.15);
+}
+/*#sparkle-canvas-unused {
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  pointer-events:none;
+  border-radius:14px;
+}
+.sign-name {
+  font-size:0.96em;
+  color:#6b3a8a;
+  font-weight:400;
+  font-style:italic;
+}
+.sign-role {
+  font-family:var(--font-mono);font-size:0.51rem;
+  letter-spacing:0.16em;text-transform:uppercase;
+  color:#8a5a9a;margin-top:0.18rem;font-weight:400;
+  opacity:0.75;
+  position:relative;z-index:1;
+}
+.haruaru {
+  font-family:var(--font-mono);font-size:0.65rem;
+  letter-spacing:0.15em;color:#7a4a9a;
+  margin-top:0.3rem;font-weight:400;
+}
+/* Unsure tab — lavender-pink gradient when active */
+.tab-btn[data-i="7"].active {
+  background: linear-gradient(90deg, #d8c0f0, #f0c0d8) !important;
+  color: #5a2878 !important;
+  box-shadow: 0 3px 12px rgba(180,100,200,0.2) !important;
+}
+
+a:focus-visible,button:focus-visible{outline:2px solid var(--text);outline-offset:2px;border-radius:2px;}
+@keyframes slideIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+@media(max-width:480px){
+  .shell{padding:0 0.9rem;}
+  .section-card{padding:1.2rem 1.1rem 0.8rem;}
+  h1{font-size:1.3rem;}
+}
+
+/* ── THREE-MOMENT BLOCKS (citations) ── */
+.moment { margin:1rem -0.5rem 0; padding:1rem 1.2rem 0.9rem; border-radius:8px; }
+.moment + .moment { margin-top:0.6rem; }
+.moment-label { font-family:var(--font-mono); font-size:0.68rem; letter-spacing:0.18em; text-transform:uppercase; color:var(--acc); display:block; margin-bottom:0.7rem; font-weight:400; }
+.moment-practice { background:rgba(0,0,0,0.03); border-left:2px solid var(--acc); }
+.moment-politics  { background:rgba(0,0,0,0.055); border-left:2px solid var(--acc); }
+.moment-regrnd    { background:rgba(0,0,0,0.08); border-left:3px solid var(--acc); }
+.moment-regrnd p  { font-weight:500; }
+
+
+  100% { opacity:0.5; }
+}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- A11Y panel -->
+<div id="a11y-toggle" role="region" aria-label="Accessibility options">
+  <button id="a11y-btn" aria-expanded="false" aria-controls="a11y-panel" aria-label="Open accessibility settings">⚙</button>
+  <div id="a11y-panel" role="dialog" aria-label="Accessibility settings">
+    <div class="a11y-sec">
+      <span class="a11y-lbl" id="lbl-font">Font</span>
+      <div class="a11y-row" role="group" aria-labelledby="lbl-font">
+        <button id="btn-font-default" class="active" onclick="setFont('default')" aria-pressed="true">Default</button>
+        <button id="btn-font-dysl" onclick="setFont('dyslexia')" aria-pressed="false">Dyslexia</button>
+      </div>
+      <p class="dysl-note">Dyslexia mode uses Atkinson Hyperlegible — wider letterforms, more distinct characters, increased spacing, no thin strokes.</p>
+    </div>
+    <div class="a11y-sec">
+      <span class="a11y-lbl" id="lbl-size">Text size</span>
+      <div class="a11y-row" role="group" aria-labelledby="lbl-size">
+        <button onclick="adjustSize(-1)" aria-label="Decrease font size">A−</button>
+        <button onclick="adjustSize(0)" aria-label="Reset font size">Reset</button>
+        <button onclick="adjustSize(1)" aria-label="Increase font size">A+</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+
+  <header class="site-header" id="page-top">
+    <p class="eyebrow">For my students &nbsp;·&nbsp; On assessment</p>
+    <h1>A few things I wanted to share</h1>
+    <p class="byline">Dr Michelle Ocriciano</p>
+    <div class="disclaimer" role="note">
+      ⚠ Everything here reflects my own approach as your lecturer and applies <strong>only to the courses I teach</strong>. Other lecturers in your programme have their own ways of knowing and being — their own epistemological and pedagogical positions. What I describe here is mine. Please respect that multiplicity.
+    </div>
+  </header>
+
+  <!-- TOP TAB BAR -->
+  <div class="tab-bar" role="tablist" aria-label="Assessment topics" id="top-tabbar">
+    <button class="tab-btn active" role="tab" data-i="0" aria-selected="true"  aria-controls="card-0" onclick="goTo(0)">First person</button>
+    <button class="tab-btn"        role="tab" data-i="1" aria-selected="false" aria-controls="card-1" onclick="goTo(1)">Yourself</button>
+    <button class="tab-btn"        role="tab" data-i="2" aria-selected="false" aria-controls="card-2" onclick="goTo(2)">AI use</button>
+    <button class="tab-btn"        role="tab" data-i="3" aria-selected="false" aria-controls="card-3" onclick="goTo(3)">Citations</button>
+    <button class="tab-btn"        role="tab" data-i="4" aria-selected="false" aria-controls="card-4" onclick="goTo(4)">Format</button>
+    <button class="tab-btn"        role="tab" data-i="5" aria-selected="false" aria-controls="card-5" onclick="goTo(5)">Sources</button>
+    <button class="tab-btn"        role="tab" data-i="6" aria-selected="false" aria-controls="card-6" onclick="goTo(6)">Marking</button>
+    <button class="tab-btn"        role="tab" data-i="7" aria-selected="false" aria-controls="card-7" onclick="goTo(7)">Unsure?</button>
+  </div>
+
+  <hr class="bar-divider">
+
+  <!-- CONTENT AREA -->
+  <div class="content-area" id="main">
+
+    <!-- 0: First person -->
+    <div class="section-card active" id="card-0" data-i="0" role="tabpanel" tabindex="0">
+      <p class="section-label">First person</p>
+      <h2>You are always allowed to say <em>I</em>.</h2>
+      <p>In every course I teach, you can always write in first person. Without exception. This is not something you need to justify, earn, or apologise for. It is simply how we work here.</p>
+      <p>And there is a reason for it that goes beyond permission. Latour and Stengers have spent careers arguing that knowledge is always produced by someone, somewhere, inside a particular set of conditions. Laura Richardson writes about writing itself as a method of inquiry — the act of putting words on the page is where ideas take shape, shift, and sometimes surprise you. You do not write after you have thought. You write in order to think. The reading and the thinking and the writing happen together, and it is that simultaneity that determines what the paper actually becomes.</p>
+      <div class="pull">Sometimes you think you are going to write one thing and you end up writing something else entirely. That is not failure. That is the work doing what it needs to do.</div>
+      <p>Hold onto the question you are trying to answer. Let everything else move.</p>
+      <p>Now — here is the deeper thing. Writing in the first person is not just a stylistic choice. It is an epistemological commitment. The alternative — writing as if no one is doing the thinking — does not produce neutrality. It produces concealment. "This paper argues…" is still a person arguing. You are simply choosing not to name them. Naming yourself does not make the work less rigorous. It makes the conditions of the argument visible. That is more honest, not less.</p>
+      <p>There are as many ways of using I as there are ways of thinking. What follows is not a taxonomy of correct uses — it is a scaffold. If you already know how you want to be present in your writing, trust that and move on. If you are still finding your way in, these are some of the doors. They are not the only doors.</p>
+      <ul class="bullets">
+        <li><strong>I when you are claiming.</strong> Not "it can be argued that" or "this paper will explore" — both of which hide who is doing the arguing. If you are the one making the claim, say so. "I argue," "I contend," "I find" — not arrogant. Precise.</li>
+        <li><strong>I when you are interpreting.</strong> When you read a text and draw meaning from it, that meaning is produced in the encounter between the text and you — your formation, your experience, your questions. Naming that encounter as yours is more honest than pretending the interpretation arrived on its own.</li>
+        <li><strong>I when you are uncertain.</strong> "I am not yet sure how to resolve this tension" is stronger than burying the same uncertainty in passive constructions. Named uncertainty is intellectual integrity. Hidden uncertainty is a crack the reader will find anyway.</li>
+        <li><strong>I when you are moved, troubled, or changed by something you read.</strong> If a text shifted how you see a problem — say so. That encounter is part of the intellectual record of your paper. It belongs there.</li>
+      </ul>
+      <p>As you write more, you will find your own ways of being present on the page. The scaffold becomes unnecessary when you no longer need it. That is the point.</p>
+      <div class="aside">The convention of third-person distanced academic writing has a history — and that history is worth knowing. It emerged alongside a conception of science that positioned the researcher as invisible and universal, which served to naturalise very specific ways of knowing as the default. Writing in first person is not just permission. For many of you, it is a small act of epistemic honesty that the dominant tradition has not always made easy.</div>
+      <p>Scholars whose work underpins this position: <strong>Bruno Latour &amp; Isabelle Stengers</strong> on situated knowledge production; <strong>Laura Richardson</strong> on writing as inquiry; <strong>Donna Haraway</strong> on the politics of objectivity.</p>
+    </div>
+
+    <!-- 1: Yourself -->
+    <div class="section-card" id="card-1" data-i="1" role="tabpanel" tabindex="0">
+      <p class="section-label">Bringing yourself</p>
+      <h2>Your context is not a decoration. It is the argument.</h2>
+      <p>You are expected to bring in who you are — your practice, your professional history, your questions, your contradictions. This is not a stylistic invitation. It is a methodological requirement. One of the core arguments running through everything we do in these courses is that who you are shapes the research you do and what you write.</p>
+      <ul class="bullets">
+        <li><strong>Your professional context grounds the argument.</strong> When you write about your school, your team, your organisation, your patients — you are not decorating the paper. You are locating it. That is where the ideas meet real conditions, real constraints, real stakes. It is also where the limits of theory become visible — and where your analysis earns its credibility.</li>
+        <li><strong>Your experience is a site of knowing, not a source of anecdote.</strong> Post-qualitative traditions have spent decades arguing against the idea that experience is raw material to be processed into legitimate knowledge elsewhere. The experience does not need to be translated into data to count. It already is thinking. The question is how you work with it on the page.</li>
+        <li><strong>Your discomfort is worth writing about.</strong> If a reading troubles you, if a theory does not match what you see in practice, if a framework seems to erase something important — write about that. Discomfort is often the sign that something real is being encountered. Do not smooth it over to appear more academically tidy.</li>
+        <li><strong>Your cultural and linguistic positioning is a resource.</strong> These are not deficits to be apologised for. They are perspectives the literature frequently lacks, and your paper is richer for including them deliberately.</li>
+        <li><strong>Disagreement with the literature is intellectually valuable.</strong> When argued carefully, with honesty, it is worth more than agreement that has never been tested. Do not perform consensus. Think. Then write what you actually think.</li>
+      </ul>
+      <p>Now — here is the sharper version of what all of this means. You are not bringing yourself into the research. You are already in it. Your professional context, your institutional constraints, your cultural and linguistic positioning — these are not external factors you can choose to include or exclude. They are the conditions under which the research is produced. The question is not whether they belong in the paper. The question is whether you will make them visible enough for your reader to understand what your argument is shaped by.</p>
+      <p>A paper that pretends to come from nowhere is not more objective. It is less honest — and harder to evaluate, because the reader cannot see what the argument is standing on.</p>
+      <div class="aside">The language of "data" and "evidence" carries its own assumptions — about what counts as knowledge, about the relationship between the researcher and the researched, about what can be extracted and measured and verified. These courses work within and against those assumptions simultaneously. When you bring your experience into your writing, you are not producing data. You are producing thought. That is a different claim, and a more interesting one.</div>
+    </div>
+
+    <!-- 2: AI -->
+    <div class="section-card" id="card-2" data-i="2" role="tabpanel" tabindex="0">
+      <p class="section-label">AI use</p>
+      <h2>You have permission to be imperfect.</h2>
+      <p>This is your decision to make. I am not here to tell you what to do with AI tools, and I cannot stop you from using them. What I can do is make sure that decision is an informed one — and then give you the permission that I think some of you are waiting for.</p>
+      <p>Here is what is actually happening when you use tools like ChatGPT, Claude, Copilot, or Gemini:</p>
+      <ul class="bullets">
+        <li><strong>These tools are trained on what already exists — and what exists is not neutral.</strong> The corpora feeding most large language models are dominated by English-language academic and internet texts, which reproduce the perspectives, assumptions, and blind spots already present in those traditions. The model does not know this about itself. It cannot correct for it.</li>
+        <li><strong>The model reproduces bias because it has no mechanism to question it.</strong> If the texts used to train AI over-represent certain disciplines, certain countries, certain kinds of claims — the output will too. Not because the model is malicious, but because it is averaging what it has seen. And what it has seen is not the whole of human thought.</li>
+        <li><strong>The result is writing that sounds authoritative and says very little.</strong> AI-generated academic writing tends to be grammatically smooth, structurally sensible, and epistemologically thin. It reaches for consensus, avoids friction, and produces prose that could have been written by anyone, about anything.</li>
+        <li><strong>What AI erases is precisely what makes your writing worth reading.</strong> Your multilingualism, your professional experience, your cultural frameworks, your way of noticing things — these are the features that produce original thought. They are not deficits the AI is helpfully smoothing over. They are the substance of the argument.</li>
+      </ul>
+      <div class="pull">One way to recognise AI-generated writing: it sounds like it was written by someone who has never had to make a decision in a real context. Your writing should sound like it comes from somewhere — because it does.</div>
+      <p>So: if you need permission to hand in writing that is slightly unclear, reaching for a word that is not quite right, imperfectly expressed — <strong>you have it.</strong> Your thought process and your curiosity matter more to me than the surface of the language that carries them.</p>
+      <div class="aside">Spell checks have existed for a long time — keep using them. If you want to use AI strictly for grammar or spelling, that is your call. Tell it exactly what you need. AI is only as good as the prompt you design for it, and a vague prompt produces a vague result.</div>
+    </div>
+
+    <!-- 3: Citations -->
+    <div class="section-card" id="card-3" data-i="3" role="tabpanel" tabindex="0">
+      <p class="section-label">Citations</p>
+      <h2>Cite as many as you need. No more, no fewer.</h2>
+      <p>There is no required number of citations in my courses. The number follows from the argument — not the other way around. Some papers do this well with ten sources. Some with forty. What matters is that every source earns its place.</p>
+
+      <div class="moment moment-practice">
+        <span class="moment-label">The Practice</span>
+        <p>The rule is more principled than any number:</p>
+        <ul class="bullets">
+          <li><strong>If the idea is not originally yours, cite where it came from.</strong> Even if you have absorbed it so thoroughly it feels like your own thinking now — if you encountered it in a text, acknowledge it. This is intellectual honesty about the conversation you are joining.</li>
+          <li><strong>If you found inspiration in a source — acknowledge it.</strong> Citation is also a way of showing your reader the map of your thinking, not just its destination. The encounter is worth naming even if you did not end up agreeing.</li>
+          <li><strong>If you are building on a concept, a tradition, a framework — cite it.</strong> Common knowledge still has an origin. Naming that origin situates your work within a lineage and helps the reader understand the architecture you are working with.</li>
+          <li><strong>If you are disagreeing with someone, name them and cite them.</strong> A claim that contradicts "the literature" in the abstract is much weaker than one that says: I disagree with Biesta here, and here is why. Engagement with a specific argument is what gives disagreement substance.</li>
+          <li><strong>If you are paraphrasing — even loosely — cite it.</strong> If the idea belongs to someone else and you are reformulating it, the citation still belongs there. Your reader deserves to trace your thinking.</li>
+        </ul>
+        <p>One more thing that matters practically: <strong>if you are working with sources in languages other than English — use them.</strong> Academic English is nobody's native tongue. It is an acquired register — with its own conventions, its own acceptable moves, its own ways of sounding credible — and it was learned, not born, by everyone sitting in that room. The student who grew up speaking English at home and the student who arrived in Australia three years ago both had to learn how to write academically. The strangeness of the register is shared, even when its familiarity is not.</p>
+        <p>Which means: if your question, your context, or your professional world is grounded in another linguistic tradition, your sources should reflect that. You are not being asked to filter your thinking through English-language scholarship for it to count. APA has clear guidance for citing non-English sources — include the original title in the original language, provide an English translation in brackets, keep the original publication details. That is all.</p>
+        <p>And here is an invitation for everyone: did you study a language? Do you speak one, even a little? Go look at what scholarship in that language says about your topic. Be curious. Be adventurous. Sometimes you find things that the English-language literature has simply not thought to say — different framings, different problems, different answers. Isn't that, in part, why you spent all that time learning it?</p>
+      </div>
+
+      <div class="moment moment-politics">
+        <span class="moment-label">The Politics</span>
+        <p>It is often said that citation is an ethical practice — and it is. But it is not an abstract or universal ethics. Citation, as we practise it in academic writing, comes from particular histories. It is tied to Western traditions of authorship, intellectual property, and the ownership of ideas — emerging primarily from within Anglophone academic institutions. These are not global defaults. They are culturally and historically specific ways of organising knowledge.</p>
+        <p>In some traditions, reproducing or closely following another's words is not considered theft but respect — a way of honouring the authority of the source rather than claiming ownership over it. The sharp boundary between "my idea" and "your idea" that citation polices in Western academia does not exist in the same way everywhere. Knowing this is not a reason to abandon citation. It is a reason to hold it with more awareness than you might have before.</p>
+        <ul class="bullets">
+          <li><strong>Ask whose knowledge is being cited — and whose is being left out.</strong> If your reference list consists entirely of authors from the United States, the United Kingdom, and Australia, that is information about the literature you have accessed, not the extent of knowledge on your topic. Indigenous scholars, Latin American theorists, African philosophers, Asian educational researchers — these traditions exist, have been thinking these questions for a long time, and are frequently absent from the databases we most easily reach.</li>
+          <li><strong>Citational justice is a serious scholarly conversation.</strong> Who we cite shapes who gets read, who gets hired, whose ideas get amplified, and whose get marginalised. When you have a choice between two equally useful sources and one comes from outside the dominant Anglo-American tradition — citing that one is not tokenism. It is a contribution to a more honest intellectual ecosystem.</li>
+          <li><strong>You are allowed to cite knowledge that does not come in journal article form.</strong> Indigenous knowledge systems, oral traditions, practitioner wisdom, community documents — these are not lesser epistemologies waiting to be legitimised by a Scopus-indexed journal. They have their own rigour and their own long histories. Cite them with the same care and specificity you would give any other source.</li>
+        </ul>
+        <p>Citation is not just about where ideas come from. It is about what kinds of knowledge are allowed to count — and who is recognised as a knower.</p>
+      </div>
+
+      <div class="moment moment-regrnd">
+        <span class="moment-label">So we cite</span>
+        <p>Because we are writing here. In this institution, in this country, within this academic tradition, citation is how arguments are made accountable and traceable. It is how readers can follow your thinking, return to your sources, and evaluate your claims.</p>
+        <p>So we cite. Not blindly, and not as a mechanical requirement — but with awareness of what the practice is doing and where it comes from. We cite to acknowledge the intellectual labour of others. We cite to situate our thinking within a conversation. We cite to make our arguments open to scrutiny. And we cite knowing that this system is partial, historically located, and not the only way knowledge has ever been organised.</p>
+        <p>Awareness does not remove the responsibility to cite. It deepens it.</p>
+      </div>
+    </div>
+
+    <!-- 4: Formatting -->
+    <div class="section-card" id="card-4" data-i="4" role="tabpanel" tabindex="0">
+      <p class="section-label">References &amp; formatting</p>
+      <h2>APA. Everything else — use your judgment.</h2>
+      <p>References are always APA. This is the convention in education and it provides a shared language your reader will recognise. APA 7 — the library has a thorough guide covering everything from peer-reviewed articles to podcasts, social media, film, and government documents. Use it when in doubt.</p>
+      <p>For everything else, here is your freedom:</p>
+      <ul class="bullets">
+        <li><strong>Font and spacing — we genuinely do not care.</strong> Use whatever helps you read and write most clearly. These choices have no bearing on the quality of your thinking and we will not penalise you for them.</li>
+        <li><strong>Headings and subheadings — your call, chosen deliberately.</strong> Some arguments are clarified by visible structure. Others are weakened by it — when the sections are too neat, the reasoning can hide inside them. Think about whether your argument flows better as continuous prose or whether it genuinely benefits from being carved into labelled sections. Both are legitimate.</li>
+        <li><strong>Cover sheet — not required.</strong> You may include one if your habit calls for it, but do not spend energy on it.</li>
+        <li><strong>Structure — follow the argument, not a template.</strong> Introduction, literature review, methodology, findings, discussion, conclusion is one possible shape. It is not the only one, and it is not always the most honest one. If your thinking does not naturally move in that sequence, do not force it. Let the structure emerge from what the argument actually needs.</li>
+        <li><strong>Paragraphs — trust your own sense of what is working.</strong> Long paragraphs are good. Short paragraphs are good. It is not the size that makes them good or bad — it is whether the content holds together and whether the argument is moving. A single sentence can be a paragraph if it earns that space. Three pages can be a paragraph if they stay on one sustained thought. Read your own work aloud and you will know.</li>
+      </ul>
+      <div class="aside">Form is not neutral. The way a paper is structured — where it begins, how it moves, what is foregrounded or delayed — is part of the argument it is making. Templates can be useful. They can also conceal thinking by giving it a pre-shaped container. Use them if they serve your argument. Do not follow them if they do not.</div>
+    </div>
+
+    <!-- 5: Sources -->
+    <div class="section-card" id="card-5" data-i="5" role="tabpanel" tabindex="0">
+      <p class="section-label">Non-academic sources</p>
+      <h2>Life is multiple. So can your sources be.</h2>
+      <p>The academic journal article is not the ceiling of what counts as knowledge. It is one form among many. Research is multiple. Practice is multiple. Your professional world is multiple. So are the sources that can legitimately speak to it.</p>
+      <p>News articles, podcasts, films, documentaries, social media, policy documents, institutional reports, novels, artworks — all of it is permitted. The criteria you apply stay the same regardless of the form. Ask yourself:</p>
+      <ul class="bullets">
+        <li><strong>Is this source valid?</strong> Does it come from a place of accountability — someone or something that can be located, evaluated, questioned? Validity does not require peer review. It requires that the source can be examined and that you can say something about where it comes from and why it matters.</li>
+        <li><strong>Is it meaningful for this argument?</strong> A source that makes the page look fuller but does nothing for the analysis is worse than no source at all. Every source you include is making an implicit claim that this belongs here. Make sure it does.</li>
+        <li><strong>Can you defend it?</strong> If someone challenged your choice of this source — could you explain why you chose it rather than something else? You do not need to pre-empt that conversation in the paper, but you need to have had it with yourself.</li>
+        <li><strong>Is it ethical?</strong> Does including this source respect the people, communities, or contexts it draws on? Does it represent them accurately and fairly? This question applies to academic sources too — but it is worth asking explicitly when the source is closer to lived experience.</li>
+      </ul>
+      <div class="aside">The best sources do not simply support your argument. They put pressure on it. If every source agrees with you, the question is not whether your argument is strong — it is whether it has been tested. And the idea that only peer-reviewed academic sources count as real evidence is itself an epistemological position. A contestable one. Know that you are always choosing your sources, and choose deliberately.</div>
+    </div>
+
+    <!-- 6: Marking -->
+    <div class="section-card" id="card-6" data-i="6" role="tabpanel" tabindex="0">
+      <p class="section-label">What we look for</p>
+      <h2>Description is the floor. Analysis is where you live.</h2>
+      <p>Let me be honest with you about what we are actually looking for when we read your work. We always mark to the rubric — so read it carefully, more than once. Within that, here is the real version:</p>
+      <ul class="bullets">
+        <li><strong>Effort and genuine engagement.</strong> We can tell when something has been thought about. Evidence of real engagement shows up in unexpected connections, in questions that go beyond the obvious, in moments where the writing takes a risk. It does not need to be polished — it needs to be present.</li>
+        <li><strong>Description — enough, not more.</strong> We need enough context to understand what you are writing about. Orient us — what kind of organisation, what your role, what is at stake. Then move into your thinking. Do not spend half the paper describing what happened.</li>
+        <li><strong>Analysis — this is where you actually live.</strong> Analysis is what happens when you put the literature and your experience and your question in conversation with each other and start drawing conclusions. It is not summarising what the authors said. It is making a claim about what something means, why it matters, and what follows from it.</li>
+        <li><strong>Depth over breadth.</strong> Do not try to impress us by mentioning as many papers as possible or covering as many angles as you can find. You have a word count, and it is not a container to fill — it is a constraint that forces you to know what you actually think. Pick one argument. Follow it all the way down. A focused, rigorous engagement with one idea is worth far more than a survey of twelve that touches none of them.</li>
+        <li><strong>Your voice and your standpoint.</strong> By the end of the paper, we should know where you stand. Not where Biesta stands. Not where the course materials lead. Where you stand — and why, based on everything you have engaged with.</li>
+        <li><strong>A position you are willing to defend.</strong> Having a position does not mean being certain. It means being willing to argue for something and hold your ground — while being honest about what you do not yet know. Uncertainty, when named clearly, is a position. Vagueness is not.</li>
+      </ul>
+      <p>Weak papers tend to do one of the following: describe extensively without making a claim; agree with the literature without interrogating it; mention everything without committing to anything. Strong papers take the risk of saying something that could be disagreed with — and then do the work to support it.</p>
+      <p>The paper that should come to us is not your first draft. It is the one that has already been through the fire — written long, edited hard, cut back to the core of the point you are making. Write more than you need. Then go back. Edit. Ask yourself: what is the one thing I am actually trying to say? Make sure that thing is still there, clearly, at the end. The word count is a guide — what matters is whether the argument is complete.</p>
+      <div class="aside">We are not marking your fluency in English. A sophisticated argument in imperfect language — language that is reaching, that is working hard to say something precise — is far more interesting to me than a grammatically flawless essay that says nothing. Clarity matters deeply. But clarity is not the same as polish, and polish is not a substitute for thought.</div>
+    </div>
+
+    <!-- 7: Unsure / Closing -->
+    <div class="section-card" id="card-7" data-i="7" role="tabpanel" tabindex="0">
+      <p class="section-label">If you are unsure</p>
+      <h2>There is always somewhere to go.</h2>
+      <p>Assessment tasks are discussed thoroughly in class — in the room, in real time, with everyone who has the same questions you have. The first and most important thing you can do when you are unsure is bring your uncertainty into the conversation while you are still in it. Questions asked there benefit everyone, not just you.</p>
+      <p>If you are still unsure after class:</p>
+      <ol class="steps">
+        <li><strong>Watch the recording from the relevant session.</strong> Questions and clarifications appear there in more detail than you might remember from being in the room. Go back with the assessment brief in front of you.</li>
+        <li><strong>Read the announcements carefully.</strong> They carry more than dates and deadlines. They are part of the teaching — they often pick up threads from class and respond to questions I am noticing across the cohort.</li>
+        <li><strong>Return to the course materials and the assessment brief slowly.</strong> Line by line. Asking what each sentence is actually asking you to do. The answer is often already there.</li>
+        <li><strong>Email me.</strong> That is what I am here for. I would far rather answer a question than have you sitting with unnecessary confusion. There are no questions too small to ask.</li>
+      </ol>
+      <div class="aside">There is no reinterpretation of the task. The task is what it is. But there is always room to discuss what it means for your particular context — where you might take it, and what it could look like with your questions at its centre.</div>
+
+      <div class="closing-card">
+        <div class="permission-block">
+          <p class="sign-off">You have permission to be uncertain, to be in process, to not yet know where the writing is taking you. That is not a problem to solve. That is research.</p>
+        </div>
+        <div class="sign-block" id="sign-block">
+          <p class="sign-name">Dr Michelle Ocriciano</p>
+                    <p class="haruaru">하루하루</p>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.content-area -->
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" aria-label="Section navigation">
+    <button class="nav-btn" id="btn-prev" onclick="navigate(-1)" disabled aria-label="Previous section">← Prev</button>
+    <span class="nav-counter" id="counter" aria-live="polite">1 / 8</span>
+    <button class="nav-btn" id="btn-next" onclick="navigate(1)" aria-label="Next section">Next →</button>
+  </nav>
+
+  <hr class="bar-divider">
+
+  <!-- BOTTOM TAB BAR -->
+  <div class="tab-bar bottom-bar" role="tablist" aria-label="Assessment topics (bottom)" id="bot-tabbar">
+    <button class="top-btn" onclick="goToTop()" aria-label="Back to top">↑ Top</button>
+    <button class="tab-btn active" role="tab" data-i="0" aria-selected="true"  onclick="goTo(0);goToTop()">First person</button>
+    <button class="tab-btn"        role="tab" data-i="1" aria-selected="false" onclick="goTo(1);goToTop()">Yourself</button>
+    <button class="tab-btn"        role="tab" data-i="2" aria-selected="false" onclick="goTo(2);goToTop()">AI use</button>
+    <button class="tab-btn"        role="tab" data-i="3" aria-selected="false" onclick="goTo(3);goToTop()">Citations</button>
+    <button class="tab-btn"        role="tab" data-i="4" aria-selected="false" onclick="goTo(4);goToTop()">Format</button>
+    <button class="tab-btn"        role="tab" data-i="5" aria-selected="false" onclick="goTo(5);goToTop()">Sources</button>
+    <button class="tab-btn"        role="tab" data-i="6" aria-selected="false" onclick="goTo(6);goToTop()">Marking</button>
+    <button class="tab-btn"        role="tab" data-i="7" aria-selected="false" onclick="goTo(7);goToTop()">Unsure?</button>
+  </div>
+
+</div><!-- /.shell -->
+
+<script>
+var current = 0;
+var TOTAL = 8;
+
+function syncTabs(i) {
+  var btns = document.querySelectorAll('.tab-btn');
+  var b;
+  for (b = 0; b < btns.length; b++) {
+    if (parseInt(btns[b].getAttribute('data-i')) === i) {
+      btns[b].className = btns[b].className.replace(' active','') + ' active';
+    } else {
+      btns[b].className = btns[b].className.replace(' active','');
+    }
+  }
+}
+
+function goTo(i, focus) {
+  var cards = document.querySelectorAll('.section-card');
+  if (cards[current]) {
+    cards[current].className = cards[current].className.replace(' active','');
+  }
+  current = i;
+  if (!cards[current]) return;
+  cards[current].className = cards[current].className + ' active';
+  cards[current].scrollTop = 0;
+  syncTabs(i);
+  var counter = document.getElementById('counter');
+  if (counter) counter.innerHTML = (current + 1) + ' / ' + TOTAL;
+  var prev = document.getElementById('btn-prev');
+  var next = document.getElementById('btn-next');
+  if (prev) prev.disabled = (current === 0);
+  if (next) next.disabled = (current === TOTAL - 1);
+  var topBar = document.getElementById('top-tabbar');
+  if (topBar) {
+    var activeBtn = topBar.querySelector('.tab-btn[data-i="' + i + '"]');
+    if (activeBtn && activeBtn.scrollIntoView) {
+      activeBtn.scrollIntoView({ behavior: "smooth", inline: "center" });
+    }
+  }
+}
+
+function navigate(dir) {
+  var n = current + dir;
+  if (n < 0) n = 0;
+  if (n >= TOTAL) n = TOTAL - 1;
+  goTo(n, true);
+}
+
+function goToTop() {
+  var top = document.getElementById('page-top');
+  if (top) top.scrollIntoView();
+}
+
+function setFont(mode) {
+  if (mode === 'dyslexia') {
+    document.body.className = document.body.className.replace(' dyslexia','') + ' dyslexia';
+  } else {
+    document.body.className = document.body.className.replace(' dyslexia','');
+  }
+  var d  = document.getElementById('btn-font-default');
+  var dy = document.getElementById('btn-font-dysl');
+  if (mode === 'dyslexia') {
+    if (d)  d.className = d.className.replace(' active','');
+    if (dy) dy.className = dy.className + ' active';
+  } else {
+    if (d)  d.className = d.className + ' active';
+    if (dy) dy.className = dy.className.replace(' active','');
+  }
+  try { localStorage.setItem('a11y-font', mode); } catch(ex) {}
+}
+
+var sizeDelta = 0;
+function adjustSize(dir) {
+  if (dir === 0) sizeDelta = 0;
+  else {
+    sizeDelta = sizeDelta + dir * 2;
+    if (sizeDelta < -4) sizeDelta = -4;
+    if (sizeDelta > 8)  sizeDelta = 8;
+  }
+  document.documentElement.style.setProperty('--size-base', (18 + sizeDelta) + 'px');
+  try { localStorage.setItem('a11y-size', sizeDelta); } catch(ex) {}
+}
+
+var aBtn  = document.getElementById('a11y-btn');
+var panel = document.getElementById('a11y-panel');
+if (aBtn) {
+  aBtn.onclick = function() {
+    if (panel) {
+      if (panel.className.indexOf('open') >= 0) {
+        panel.className = panel.className.replace(' open','');
+      } else {
+        panel.className = panel.className + ' open';
+      }
+    }
+  };
+}
+document.onclick = function(e) {
+  var toggle = document.getElementById('a11y-toggle');
+  if (toggle && panel && e.target && !toggle.contains(e.target)) {
+    panel.className = panel.className.replace(' open','');
+  }
+};
+
+try {
+  if (localStorage.getItem('a11y-font') === 'dyslexia') setFont('dyslexia');
+  var s = parseInt(localStorage.getItem('a11y-size') || '0');
+  if (s) { sizeDelta = s - 2; adjustSize(1); }
+} catch(ex) {}
+</script>
+</body>
+</html>
